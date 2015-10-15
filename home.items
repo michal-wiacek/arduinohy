@@ -1,0 +1,47 @@
+Group All
+Group gGF 		(All)
+Group gC 		(All)
+Group Outdoor 	(All)
+Group Shutters 	(All)
+Group Weather 	(All)
+Group Status 	(All)
+
+Group Salon 	"Living Room" 	<video>   (gGF)
+Group Kitchen 	"Kitchen" 	<kitchen> (gGF)
+Group Bath 	"Bathroom" 	<bath>    (gGF)
+Group Office 	"Office" 	<office>  (gGF)
+Group Child 	"Child's Room" 	<girl1>	  (gGF)
+
+/* active groups */
+Group:Switch:OR(ON, OFF) 	Lights 	"All Lights [(%d)]" (All) {mqtt=">[mosquitto:/home/ard/p10/com:command:ON:1],>[mosquitto:/home/ard/p10/com:command:OFF:0],<[mosquitto:/home/ard/p10/com/state:state:default]"}
+Group:Number:AVG 	Temperature	"Avg. Room Temperature [%.1f °C]" 	<temperature>	(Status)
+
+/* Lights */
+Switch Light_gGF_Salon_Sufit "Sufit1" (Salon, Lights)        {mqtt=">[mosquitto:/home/ard/p1/com:command:ON:1],>[mosquitto:/home/ard/p1/com:command:OFF:0],<[mosquitto:/home/ard/p1/com/state:state:default]"}
+
+Switch Light_gGF_Salon_Sufit2	"Sufit2" (Salon, Lights)       {mqtt=">[mosquitto:/home/ard/p2/com:command:ON:1],>[mosquitto:/home/ard/p2/com:command:OFF:0],<[mosquitto:/home/ard/p2/com/state:state:default]"}
+
+Switch Light_gGF_Kitchen_Sufit "Szafki" (Kitchen, Lights)    {mqtt=">[mosquitto:/home/ard/p3/com:command:ON:1],>[mosquitto:/home/ard/p3/com:command:OFF:0],<[mosquitto:/home/ard/p3/com/state:state:default]"}
+
+Switch Light_gGF_Kitchen_Table 	"Stół" 		(Kitchen, Lights)  {mqtt=">[mosquitto:/home/ard/p4/com:command:ON:1],>[mosquitto:/home/ard/p4/com:command:OFF:0],<[mosquitto:/home/ard/p4/com/state:state:default]"}
+
+Switch Light_gGF_Bath_Ceiling "Sufit" 	(Bath, Lights)       {mqtt=">[mosquitto:/home/ard/p5/com:command:ON:1],>[mosquitto:/home/ard/p5/com:command:OFF:0],<[mosquitto:/home/ard/p5/com/state:state:default]"}
+
+Switch Light_gGF_Bath_Mirror "Lustro" 	(Bath, Lights)       {mqtt=">[mosquitto:/home/ard/p6/com:command:ON:1],>[mosquitto:/home/ard/p6/com:command:OFF:0],<[mosquitto:/home/ard/p6/com/state:state:default]"}
+
+Switch Light_gGF_Child_Sufit 	"Sufit1" (Child, Lights)       {mqtt=">[mosquitto:/home/ard/p7/com:command:ON:1],>[mosquitto:/home/ard/p7/com:command:OFF:0],<[mosquitto:/home/ard/p7/com/state:state:default]"}
+
+Switch Light_gGF_Child_Sufit2	"Sufit2" (Child, Lights)       {mqtt=">[mosquitto:/home/ard/p8/com:command:ON:1],>[mosquitto:/home/ard/p8/com:command:OFF:0],<[mosquitto:/home/ard/p8/com/state:state:default]"}
+
+Switch Light_Outdoor_Terrace 	"Balkon" (Outdoor, Lights)     {mqtt=">[mosquitto:/home/ard/p9/com:command:ON:1],>[mosquitto:/home/ard/p9/com:command:OFF:0],<[mosquitto:/home/ard/p9/com/state:state:default]"}
+
+/* Indoor Temperatures */
+Number Temperature_Salon 	"Temperature [%.1f °C]"	<temperature>	(Temperature, Salon)
+/* NTP binding demo item */
+DateTime		Date			"Date [%1$tA, %1$td.%1$tm.%1$tY]"	<calendar>	{ ntp="Europe/Warsaw:pl_PL" }
+
+/* Motion sensors */
+Contact Contact_gGF_Salon "Czujnik ruchu"	(Salon, Contact)
+Contact Contact_gGF_Kitchen "Czujnik ruchu"	(Kitchen, Contact)
+Contact Contact_gGF_Child "Czujnik ruchu"     (Child, Contact)
+Contact Contact_gGF_Hall "Czujnik ruchu"     (Hall, Contact)
