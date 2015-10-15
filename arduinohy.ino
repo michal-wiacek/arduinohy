@@ -175,7 +175,7 @@ void setup()
   Serial.begin(9600);
   Ethernet.begin(mac, ip);
     
-  if (client.connect("arduinoClient")) {
+  if (client.connect("arduinoClient", login, pass)) {
     client.publish("outTopic","hello world");
     client.subscribe("/home/ard/#");  // Subscribe to all messages for this device
   }
