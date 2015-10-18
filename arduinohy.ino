@@ -128,8 +128,9 @@ Serial.println();
     client.publish("/home/ard/p9/state","1");
     }
    }
-    int pins = 0;
-   switch (pins == HIGH) {
+   int pins;
+    if (digitalRead(pins)){
+   switch (pins) {
     case 23:
     digitalWrite(22, HIGH);
     client.publish("/home/ard/p1/state","1");
@@ -166,7 +167,7 @@ Serial.println();
     digitalWrite(38, HIGH);
     client.publish("/home/ard/p9/state","1");
     break;
-  }
+  }}
 }
 
 
@@ -175,7 +176,7 @@ void setup()
   Serial.begin(9600);
   Ethernet.begin(mac, ip);
     
-  if (client.connect("arduinoClient", login, pass)) {
+  if (client.connect("arduinoClient", "login", "pass")) {
     client.publish("outTopic","hello world");
     client.subscribe("/home/ard/#");  // Subscribe to all messages for this device
   }
